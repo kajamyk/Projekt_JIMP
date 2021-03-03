@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "update.h"
 #define iterations 30
 /*
  * 0 - dead	
@@ -12,8 +13,9 @@ int main ( int argc, char ** argv ){
 	if ( in == NULL ) return 1;
 	int a, b;
 	fscanf ( in, "%d %d", &a, &b );
+	printf ("%d%d", a, b);
 	int tab [a][b];
-	update ( tab, in, a, b );
+	update ( a, b, tab, in );
 	game_of_life ( tab, a, b );	
 	return 0;
 }
