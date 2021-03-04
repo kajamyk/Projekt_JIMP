@@ -11,10 +11,10 @@ void fix_world(struct World * world){
 
     for(i = 0; i < world->w; i++){
         for(j = 0; j < world->h; j++){
-            if(world->cells[i][j] == 2)
-                world->cells[i][j] = 1;
-            else if(world->cells[i][j] == 3)
-                world->cells[i][j] = 0;
+            if(world->cells[i*world->w + j] == 2)
+                world->cells[i*world->w + j] = 1;
+            else if(world->cells[i*world->w + j] == 3)
+                world->cells[i*world->w + j] = 0;
         }
     }
 }
@@ -25,7 +25,7 @@ int count_alive_neighbours(struct World * world, int x, int y){
     for(i = 0; i < x; i++){
         for(j = 0; j < y; j++){
             if( x >= 0 && x < world->w && y >= 0 && y < world->h && (x != i || y != j)){
-                if(world->cells[x][y] == 1 || world->cells[x][y] == 3)
+                if(world->cells[x * world->w + y] == 1 || world->cells[x * world->w + y] == 3)
                     alive++;
             }
 
@@ -39,10 +39,10 @@ void update(struct World *world){
     for(i = 0; i < world->w; i++){
         for(j = 0; j < world->h; j++){
             alive = count_alive_neighbours(world, i, j);
-            if(world->cells[i][j] == 1 && alive != 2 && alive != 3)
-                world->cells[i][j] = 3;
-            else if( world->cells[i][j] == 0 && alive == 3)
-                world->cells[i][j] = 2;
+            if(world->cells[i*world->w + j] == 1 && alive != 2 && alive != 3)
+                world->cells[i*world->w + j] = 3;
+            else if( world->cells[i*world->w + j] == 0 && alive == 3)
+                world->cells[i*world->w + j] = 2;
         }
     }
 

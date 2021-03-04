@@ -7,7 +7,7 @@
 struct World {
     int w;
     int h;
-    int ** cells;
+    int * cells;
 };
 
 struct World *create_world ( FILE * in );
