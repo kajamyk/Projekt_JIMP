@@ -16,9 +16,7 @@ void read_file( FILE * in, struct World *world){
 	for ( i = 0; i < world->w; i++ ) {
 		for ( int j = 0; j < world->h; j++ ) {
 			fscanf ( in, "%d", &world->cells[i][j] );
-			printf ("%d ", world->cells[i][j]);
 		}
-		printf("\n");
 	}
 }
 
@@ -29,4 +27,19 @@ struct World *create_world ( FILE *in ) {
 	read_file(in, world);
 
 	return world;
+}
+
+void printWorld ( struct World *world) {
+	int i;
+	printf("\n");
+	for ( i = 0; i < world->w; i++ ) {
+		for ( int j = 0; j < world->h; j++ ) {
+			printf ("%d ", world->cells[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void write_file( FILE * out, struct World * world){
+	// TODO
 }

@@ -12,4 +12,8 @@ struct World {
 
 struct World *create_world ( FILE * in );
 
+void printWorld ( struct World *world );
+
+void write_file( FILE * out, struct World * world);
+
 #endif
