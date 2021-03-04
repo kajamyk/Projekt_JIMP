@@ -9,8 +9,8 @@
 void fix_world(struct World * world){
     int i, j;
 
-    for(i = 0; i < world->w; i++){
-        for(j = 0; j < world->h; j++){
+    for(i = 0; i < world->h; i++){
+        for(j = 0; j < world->w; j++){
             if(world->cells[i*world->w + j] == 2)
                 world->cells[i*world->w + j] = 1;
             else if(world->cells[i*world->w + j] == 3)
@@ -22,9 +22,9 @@ void fix_world(struct World * world){
 int count_alive_neighbours(struct World * world, int x, int y){
     int alive = 0, i, j;
 
-    for(i = 0; i < x; i++){
-        for(j = 0; j < y; j++){
-            if( x >= 0 && x < world->w && y >= 0 && y < world->h && (x != i || y != j)){
+    for(i = 0; i < y; i++){
+        for(j = 0; j < x; j++){
+            if( x >= 0 && x < world->h && y >= 0 && y < world->w && (y != i || x != j)){
                 if(world->cells[x * world->w + y] == 1 || world->cells[x * world->w + y] == 3)
                     alive++;
             }
@@ -36,8 +36,8 @@ int count_alive_neighbours(struct World * world, int x, int y){
 void update(struct World *world){
     int i, j, alive;
 
-    for(i = 0; i < world->w; i++){
-        for(j = 0; j < world->h; j++){
+    for(i = 0; i < world->h; i++){
+        for(j = 0; j < world->w; j++){
             alive = count_alive_neighbours(world, i, j);
             if(world->cells[i*world->w + j] == 1 && alive != 2 && alive != 3)
                 world->cells[i*world->w + j] = 3;
@@ -51,14 +51,17 @@ void update(struct World *world){
 
 int game_of_life( struct World *world, int iterations){
     int i = 0;
-    
-    generate_image( world );
+
+    ge_GIF *gif = new_gif( world );
+
     for( i = 0; i < iterations; i++){
         update( world );
-        generate_image( world );
+        add_frame( world, gif );
 
-        printWorld( world ); // debug
+        // printWorld( world ); // debug
     }
+
+    save_gif( gif );
 
     return 0;
 }

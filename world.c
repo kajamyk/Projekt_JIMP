@@ -9,8 +9,8 @@ void read_file( FILE * in, struct World *world){
 	world->cells = malloc( world->w * world->h * sizeof world->cells);
 	
 	// uzupelnianie tablicy 
-	for ( i = 0; i < world->w; i++ ) {
-		for ( int j = 0; j < world->h; j++ ) {
+	for ( i = 0; i < world->h; i++ ) {
+		for ( int j = 0; j < world->w; j++ ) {
 			fscanf ( in, "%d", &world->cells[i*world->w + j] );
 		}
 	}
@@ -28,12 +28,15 @@ struct World *create_world ( FILE *in ) {
 void printWorld ( struct World *world) {
 	int i;
 	printf("\n");
-	for ( i = 0; i < world->w; i++ ) {
-		for ( int j = 0; j < world->h; j++ ) {
+	for ( i = 0; i < world->h; i++ ) {
+		for ( int j = 0; j < world->w; j++ ) {
 			printf ("%d ", world->cells[i*world->w + j]);
 		}
 		printf("\n");
 	}
+	printf("\n");
+	for(i = 0; i < world->h*world->w; i++) printf("%d ",world->cells[i]);
+	printf("\n");
 }
 
 void write_file( FILE * out, struct World * world){

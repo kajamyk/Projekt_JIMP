@@ -3,8 +3,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "world.h"
-#include "generate_image.h"
+#include "generate_gif.h"
+#include "gifenc/gifenc.h"
 
 int game_of_life( struct World *world, int iterations);
 
