@@ -7,7 +7,7 @@ world.o: world.h world.c
 game_of_life.o: game_of_life.h game_of_life.c
 main.o: world.o game_of_life.o generate_gif.o gifenc.o main.c
 generate_gif.o: generate_gif.h generate_gif.c
-gifenc.o: gifenc/gifenc.h gifenc/gifenc.c
+gifenc.o: gifenc.h gifenc.c
 
 
 .PHONY: clean

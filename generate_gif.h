@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "world.h"
-#include "gifenc/gifenc.h"
+#include "gifenc.h"
 
 
 ge_GIF *new_gif ( struct World *world );
