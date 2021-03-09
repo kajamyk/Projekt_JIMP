@@ -43,6 +43,7 @@ int count_alive_neighbours(struct World * world, int i, int j){
                         }
                 }
         }
+        return alive;
 }
 void update(struct World *world){
     int i, j, alive;
