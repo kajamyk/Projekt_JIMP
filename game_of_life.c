@@ -18,7 +18,7 @@ void fix_world(struct World * world){
         }
     }
 }
-
+/*
 int count_alive_neighbours(struct World * world, int x, int y){
     int alive = 0, i, j;
 
@@ -32,7 +32,18 @@ int count_alive_neighbours(struct World * world, int x, int y){
         }
     }
 }
-
+*/
+int count_alive_neighbours(struct World * world, int i, int j){
+        int alive = 0, x, y;
+        for ( x = i - 1; x < i + 2; x++ ){
+                for ( y = j - 1; y < j + 2; y++ ){
+                        if (x >= 0 && x < world->h && y >= 0 && y < world->w && (x != i || y != j)){
+                                if(world->cells[x * world->w + y] == 1 || world->cells[x * world->w + y] == 3)
+                                        alive++;
+                        }
+                }
+        }
+}
 void update(struct World *world){
     int i, j, alive;
 
