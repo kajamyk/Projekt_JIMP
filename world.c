@@ -38,7 +38,13 @@ void printWorld ( struct World *world) {
 	for(i = 0; i < world->h*world->w; i++) printf("%d ",world->cells[i]);
 	printf("\n");
 }
-
 void write_file( FILE * out, struct World * world){
-	// TODO
+        fprintf ( out, "%d %d\n", world->w, world->h);
+        for ( int i = 0; i < world->h; i++ ) {
+                for ( int j = 0; j < world->w; j++ ) {
+                        fprintf ( out, "%d ", world->cells[i*world->w + j]);
+                }
+                fprintf ( out, "\n" );
+        }
+        fprintf ( out, "\n" );
 }
