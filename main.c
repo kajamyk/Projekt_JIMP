@@ -16,7 +16,8 @@ int main ( int argc, char ** argv ){
 	if ( iterations < 1 ) return 1;
 
 	// stworz i wypelnij plansze
-	struct World *world = create_world ( in );
+	if (( struct World *world = create_world ( in )) == NULL )
+		return 0;
 
 	// debug
 	printWorld( world );
