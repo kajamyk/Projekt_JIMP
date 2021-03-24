@@ -13,6 +13,7 @@ int main ( int argc, char ** argv ){
 	FILE *out = argc > 3 ? fopen ( argv[3], "w") : fopen ( "out.txt", "w");
 
 	if ( in == NULL ) return 1;
+	if ( iterations < 1 ) return 1;
 
 	// stworz i wypelnij plansze
 	struct World *world = create_world ( in );
