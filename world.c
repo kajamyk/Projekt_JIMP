@@ -1,9 +1,14 @@
 #include "world.h"
 
-void read_file( FILE * in, struct World *world){
+int read_file( FILE * in, struct World *world){
 	int i;
 
 	fscanf( in, "%d %d", &world->w, &world->h);
+	
+	if ( world->w < 1 || world->h < 1 ){
+		printf ("Podano bledne wymiary");
+		return 0;
+	}
 
 	// alokowanie pamieci na plansze
 	world->cells = malloc( world->w * world->h * sizeof world->cells);
@@ -12,17 +17,23 @@ void read_file( FILE * in, struct World *world){
 	for ( i = 0; i < world->h; i++ ) {
 		for ( int j = 0; j < world->w; j++ ) {
 			fscanf ( in, "%d", &world->cells[i*world->w + j] );
+			if ( world->cells[i*world->w + j] != 0 && world->cells[i*world->w + j] != 1 ) {
+				printf ("Podano zle dane");
+				return 0;
+			}
 		}
 	}
+	return 1;
 }
 
 struct World *create_world ( FILE *in ) {
 
 	struct World *world = malloc(sizeof(struct World));
 
-	read_file(in, world);
-
-	return world;
+	if( read_file(in, world) )
+		return world;
+	
+	return NULL;
 }
 
 void printWorld ( struct World *world) {
