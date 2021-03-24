@@ -18,37 +18,38 @@ void fix_world(struct World * world){
         }
     }
 }
-/*
-int count_alive_neighbours(struct World * world, int i, int j){
-        int alive = 0, x, y;
-        for ( x = i - 1; x < i + 2; x++ ){
-                for ( y = j - 1; y < j + 2; y++ ){
-                        if (x >= 0 && x < world->h && y >= 0 && y < world->w && (x != i || y != j)){
-                                if(world->cells[x * world->w + y] == 1 || world->cells[x * world->w + y] == 3)
+
+int count_alive_neighbours(struct World * world, int x, int y){
+        int alive = 0, i, j;
+        for ( i = x - 1; i < x + 2; i++ ){
+                for ( j = y - 1; j < y + 2; j++ ){
+                        if (i >= 0 && i < world->h && j >= 0 && j < world->w && (i != x || j != y)){
+                                if(world->cells[i * world->w + j] == 1 || world->cells[i * world->w + j] == 3)
                                         alive++;
                         }
                 }
         }
         return alive;
 }
-*/
-int count_helper ( struct World * world, int x, int y ){
-        if(world->cells[x * world->w + y] == 1 || world->cells[x * world->w + y] == 3)
-                return 1;
-        return 0;
-}
-int count_alive_neighbours(struct World * world, int x, int y){
-        int alive = 0;
-        if ( x > 0 )
-                alive += count_helper ( world, x - 1, y );
-        if ( x + 1 < world->h )
-                alive += count_helper ( world, x + 1, y );
-        if ( y > 0 )
-                alive += count_helper ( world, x, y - 1 );
-        if ( y + 1 < world->w )
-                alive += count_helper ( world, x, y + 1 );
-        return alive;
-}
+
+// int count_helper ( struct World * world, int x, int y ){
+//         if(world->cells[x * world->w + y] == 1 || world->cells[x * world->w + y] == 3)
+//                 return 1;
+//         return 0;
+// }
+// int count_alive_neighbours(struct World * world, int x, int y){
+//         int alive = 0;
+//         if ( x > 0 )
+//                 alive += count_helper ( world, x - 1, y );
+//         if ( x + 1 < world->h )
+//                 alive += count_helper ( world, x + 1, y );
+//         if ( y > 0 )
+//                 alive += count_helper ( world, x, y - 1 );
+//         if ( y + 1 < world->w )
+//                 alive += count_helper ( world, x, y + 1 );
+//         return alive;
+// }
+
 void update(struct World *world){
     int i, j, alive;
 

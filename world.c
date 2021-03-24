@@ -1,7 +1,7 @@
 #include "world.h"
 
 int read_file( FILE * in, struct World *world){
-	int i;
+	int i, j;
 
 	fscanf( in, "%d %d", &world->w, &world->h);
 	
@@ -15,7 +15,7 @@ int read_file( FILE * in, struct World *world){
 	
 	// uzupelnianie tablicy 
 	for ( i = 0; i < world->h; i++ ) {
-		for ( int j = 0; j < world->w; j++ ) {
+		for ( j = 0; j < world->w; j++ ) {
 			fscanf ( in, "%d", &world->cells[i*world->w + j] );
 			if ( world->cells[i*world->w + j] != 0 && world->cells[i*world->w + j] != 1 ) {
 				printf ("Podano zle dane");
@@ -37,10 +37,10 @@ struct World *create_world ( FILE *in ) {
 }
 
 void printWorld ( struct World *world) {
-	int i;
+	int i, j;
 	printf("\n");
 	for ( i = 0; i < world->h; i++ ) {
-		for ( int j = 0; j < world->w; j++ ) {
+		for ( j = 0; j < world->w; j++ ) {
 			printf ("%d ", world->cells[i*world->w + j]);
 		}
 		printf("\n");
@@ -50,9 +50,10 @@ void printWorld ( struct World *world) {
 	printf("\n");
 }
 void write_file( FILE * out, struct World * world){
+	int i, j;
         fprintf ( out, "%d %d\n", world->w, world->h);
-        for ( int i = 0; i < world->h; i++ ) {
-                for ( int j = 0; j < world->w; j++ ) {
+        for ( i = 0; i < world->h; i++ ) {
+                for ( j = 0; j < world->w; j++ ) {
                         fprintf ( out, "%d ", world->cells[i*world->w + j]);
                 }
                 fprintf ( out, "\n" );

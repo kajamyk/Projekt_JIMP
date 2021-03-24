@@ -16,11 +16,12 @@ int main ( int argc, char ** argv ){
 	if ( iterations < 1 ) return 1;
 
 	// stworz i wypelnij plansze
-	if (( struct World *world = create_world ( in )) == NULL )
+	struct World *world;
+	if (( world = create_world ( in )) == NULL )
 		return 0;
 
-	// debug
-	printWorld( world );
+	// // debug
+	// printWorld( world );
 
 	// przeprowadz iteracje 
 	game_of_life ( world, iterations );	
